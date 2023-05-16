@@ -36,7 +36,13 @@ export const MainPage = () => {
         <div className={styles.mainContainer}>
             <h1>Главная</h1>
             <div className={styles.cardsContainer}>
-                {products?.data.map((value) => <Card image={value.image} title={value.title} description={value.description}/>)}
+                {products?.data.map((value) => <Card image={value.image}
+                                                                         title={value.title}
+                                                                         description={value.description}
+                                                                            price={value.price}
+                                                                        rating={value.rating.rate}
+                                                                        count={value.rating.count}
+                />)}
             </div>
         </div>
     );

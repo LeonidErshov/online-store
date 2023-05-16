@@ -1,10 +1,13 @@
+@import "src/styles/abstracts/mixins";
+
 .mainContainer {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 150px;
 
-  p {
-    color: red;
-    font-size: 30px;
+  h1 {
+    color: blue;
+    @include useInter(600, 45px, 60px);
   }
 }

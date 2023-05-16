@@ -4,7 +4,7 @@ import styles from "./styles/index.module.scss"
 export const ShoppingCart = () => {
     return (
         <div className={styles.mainContainer}>
-            <p>Корзина</p>
+            <h1>Корзина</h1>
         </div>
     );
 };
