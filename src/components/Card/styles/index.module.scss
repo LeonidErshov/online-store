@@ -1,0 +1,32 @@
+@import "src/styles/abstracts/mixins";
+
+.card {
+  border-radius: 20px;
+  //box-shadow: 0 0 20px 4px #808080;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid;
+  gap: 15px;
+  max-width: 30%;
+
+
+
+  img {
+    height: 200px;
+    width: 200px;
+    border-radius: 20px;
+  }
+
+  h2 {
+    @include useInter(400, 30px, 35px);
+
+  }
+
+  p {
+    @include useInter(400, 20px, 35px);
+  }
+
+
+}

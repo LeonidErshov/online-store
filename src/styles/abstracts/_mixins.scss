@@ -1,0 +1,24 @@
+
+@mixin useFont($font-family, $font-style, $font-weight, $font-size, $line-height) {
+  font-family: $font-family, sans-serif;
+  font-style: $font-style;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+@mixin useInter($font-weight, $font-size, $line-height) {
+  @include useFont('Inter', normal, $font-weight, $font-size, $line-height);
+}
+
+@mixin thin-scroll {
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: black;
+  }
+}
