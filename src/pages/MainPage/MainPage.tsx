@@ -2,24 +2,10 @@ import React, {useEffect, useState} from 'react';
 import styles from "./styles/index.module.scss"
 import {Card} from "../../components/Card/Card";
 import axios from "axios";
+import {ProductArray} from "../../types/ProductsArray";
+import {GetResponse} from "../../types/GetResponse";
 
 
-interface GetResponse<T> {
-    data: T[]
-}
-
-interface ProductArray {
-    category: string;
-    description: string;
-    ip: number;
-    image: string;
-    price: number;
-    rating: {
-        count: number;
-        rate: number;
-    }
-    title: string
-}
 
 export const MainPage = () => {
     const [products, setProducts] = useState<GetResponse<ProductArray>>();
@@ -32,16 +18,22 @@ export const MainPage = () => {
         });
     }, [setProducts]);
 
+    const handleAddInShoppingCart = (value: any) => {
+        localStorage.setItem(`product${value.id}`, JSON.stringify(value))
+    }
+
     return (
         <div className={styles.mainContainer}>
             <h1>Главная</h1>
             <div className={styles.cardsContainer}>
-                {products?.data.map((value) => <Card image={value.image}
-                                                                         title={value.title}
-                                                                         description={value.description}
-                                                                            price={value.price}
+                {products?.data.map((value) => <Card needButton={true}
+                                                                        image={value.image}
+                                                                        title={value.title}
+                                                                        description={value.description}
+                                                                        price={value.price}
                                                                         rating={value.rating.rate}
                                                                         count={value.rating.count}
+                                                                        onAddProductClick={() => handleAddInShoppingCart(value)}
                 />)}
             </div>
         </div>

@@ -11,9 +11,12 @@ interface CardProps {
     price: number
     rating: number
     count: number
+    onAddProductClick?: any
+    onDeleteProductClick?: any
+    needButton: boolean
 }
 
-export const Card: React.FC<CardProps> = ({image, title, description, price, rating, count}) => {
+export const Card: React.FC<CardProps> = ({image, title, description, price, rating, count, onAddProductClick, onDeleteProductClick, needButton}) => {
 
     return (
         <div className={styles.card}>
@@ -29,7 +32,11 @@ export const Card: React.FC<CardProps> = ({image, title, description, price, rat
                 />
                 <p>{`Price: ${price} $`}</p>
                 <p>{`Count: ${count}`}</p>
-                <button className={styles.button}>Добавить в корзину</button>
+                {needButton ?
+                    <button className={styles.button} onClick={onAddProductClick}>Добавить в корзину</button>
+                    :
+                    <button className={styles.button} onClick={onDeleteProductClick}>Удалить из корзины</button>
+                }
             </div>
         </div>
     );

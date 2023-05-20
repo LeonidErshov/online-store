@@ -2,12 +2,33 @@
 
 .mainContainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 150px;
+  gap: 50px;
+  padding: 150px 100px 0;
 
   h1 {
     color: blue;
     @include useInter(600, 45px, 60px);
+  }
+
+  .cardsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .emptyList {
+    display: flex;
+
+    p {
+      @include useInter(400, 20px, 35px);
+
+      a {
+        text-decoration: none;
+      }
+    }
   }
 }
