@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styles from "./styles/index.module.scss"
 // @ts-ignore
 import StarRatings from "react-star-ratings"
@@ -15,14 +15,14 @@ interface CardProps {
     price: number
     rating: number
     count: number
-    onAddProductClick?: any
-    onDeleteProductClick?: any
+    onAddProductClick?: () => void
+    onDeleteProductClick?: () => void
     needButton: boolean
     id: number
     favouritesButton?: boolean
-    onFavouritesAdd?: any
+    onFavouritesAdd?: () => void
     deleteFavouritesButton?: boolean
-    onFavouritesDelete?: any
+    onFavouritesDelete?: () => void
     shoppingCart?: boolean
 }
 
@@ -32,16 +32,14 @@ export const Card: React.FC<CardProps> = ({image, title, description, price, rat
     const handleCardClick = (id: number) => {
         const apiUrl = `https://fakestoreapi.com/products/${id}`;
         axios.get(apiUrl).then((resp:GetResponse<ProductArray>) => {
-            console.log(resp)
             setCurrentProduct(resp);
-            // localStorage.setItem(`allProducts`, JSON.stringify(resp));
         });
     }
     const [currentProductCount, setCurrentProductCount] = useState(count)
 
-    useEffect(() => {
-        localStorage.setItem(`countProduct${id}`, JSON.stringify(currentProductCount));
-    }, [currentProductCount])
+    // useEffect(() => {
+    //     localStorage.setItem(`countProduct${id}`, JSON.stringify(currentProductCount));
+    // }, [currentProductCount])
 
     return (
         <>
@@ -62,11 +60,17 @@ export const Card: React.FC<CardProps> = ({image, title, description, price, rat
                         <div className={styles.countBlock}>
                             <p>Количество:</p>
                             <button className={styles.countButton}
-                                    onClick={() => currentProductCount !== 1 && setCurrentProductCount(currentProductCount - 1)}>-
+                                    onClick={() => {
+                                        currentProductCount !== 1 && setCurrentProductCount(currentProductCount - 1)
+                                        localStorage.setItem(`countProduct${id}`, JSON.stringify(currentProductCount));
+                                    }}>-
                             </button>
                             <p>{currentProductCount}</p>
                             <button className={styles.countButton}
-                                    onClick={() => setCurrentProductCount(currentProductCount + 1)}>+
+                                    onClick={() => {
+                                        setCurrentProductCount(currentProductCount + 1)
+                                        localStorage.setItem(`countProduct${id}`, JSON.stringify(currentProductCount));
+                                    }}>+
                             </button>
                         </div>
                         :

@@ -21,8 +21,10 @@
   .search {
     display: flex;
     gap: 20px;
+    max-width: 50vw;
 
     p {
+      min-width: max-content;
       @include useInter(400, 20px, 35px);
     }
 
@@ -30,7 +32,26 @@
       padding: 10px 20px;
       border-radius: 15px;
       height: 35px;
-      width: 50vw;
+      width: 100%;
+    }
+  }
+
+  .sorts {
+    display: flex;
+    gap: 20px;
+    max-width: 50vw;
+
+
+    label {
+      min-width: max-content;
+      @include useInter(400, 20px, 35px);
+    }
+
+    select {
+      padding: 10px 20px;
+      border-radius: 15px;
+      height: max-content;
+      width: 100%;
     }
   }
 
