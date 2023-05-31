@@ -30,8 +30,9 @@ export const ShoppingCart = () => {
                                                              description={value.description}
                                                              price={value.price}
                                                              rating={value.rating.rate}
-                                                             count={value.rating.count}
+                                                             count={JSON.parse(`${localStorage.getItem(`countProduct${value?.id}`)}`)}
                                                              onDeleteProductClick={() => handleDeleteFromShoppingCart(value)}
+                                                             id={value.id}
                     />)}
                 </div>
                 :

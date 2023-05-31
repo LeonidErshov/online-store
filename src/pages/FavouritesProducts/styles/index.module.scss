@@ -101,6 +101,17 @@
         @include useInter(400, 20px, 35px);
       }
     }
+  }
 
+  .emptyList {
+    display: flex;
+
+    p {
+      @include useInter(400, 20px, 35px);
+
+      a {
+        text-decoration: none;
+      }
+    }
   }
 }

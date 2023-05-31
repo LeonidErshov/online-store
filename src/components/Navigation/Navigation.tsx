@@ -8,6 +8,7 @@ export const Navigation = () => {
             <span>
                 <Link className={styles.link} to={"./"}>Главная страница</Link>
                 <Link className={styles.link} to={"./shoppingCart"}>Корзина</Link>
+                <Link className={styles.link} to={"./favouritesProducts"}>Избранное</Link>
             </span>
         </nav>
     );

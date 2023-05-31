@@ -8,5 +8,5 @@ export interface ProductArray {
         count: number;
         rate: number;
     }
-    title: string
+    title: string;
 }
