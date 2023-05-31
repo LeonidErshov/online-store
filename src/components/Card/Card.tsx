@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from "./styles/index.module.scss"
 // @ts-ignore
 import StarRatings from "react-star-ratings"
@@ -23,9 +23,10 @@ interface CardProps {
     onFavouritesAdd?: any
     deleteFavouritesButton?: boolean
     onFavouritesDelete?: any
+    shoppingCart?: boolean
 }
 
-export const Card: React.FC<CardProps> = ({image, title, description, price, rating, count, onAddProductClick, onDeleteProductClick, needButton, id, favouritesButton = false, onFavouritesAdd, deleteFavouritesButton = false, onFavouritesDelete}) => {
+export const Card: React.FC<CardProps> = ({image, title, description, price, rating, count, onAddProductClick, onDeleteProductClick, needButton, id, favouritesButton = false, onFavouritesAdd, deleteFavouritesButton = false, onFavouritesDelete, shoppingCart = false}) => {
 
     const [currentProduct, setCurrentProduct] = useState<GetResponse<ProductArray>>()
     const handleCardClick = (id: number) => {
@@ -36,6 +37,11 @@ export const Card: React.FC<CardProps> = ({image, title, description, price, rat
             // localStorage.setItem(`allProducts`, JSON.stringify(resp));
         });
     }
+    const [currentProductCount, setCurrentProductCount] = useState(count)
+
+    useEffect(() => {
+        localStorage.setItem(`countProduct${id}`, JSON.stringify(currentProductCount));
+    }, [currentProductCount])
 
     return (
         <>
@@ -52,7 +58,20 @@ export const Card: React.FC<CardProps> = ({image, title, description, price, rat
                         name='rating'
                     />
                     <p>{`Цена: ${price} $`}</p>
-                    <p>{`Количество: ${count}`}</p>
+                    {shoppingCart ?
+                        <div className={styles.countBlock}>
+                            <p>Количество:</p>
+                            <button className={styles.countButton}
+                                    onClick={() => currentProductCount !== 1 && setCurrentProductCount(currentProductCount - 1)}>-
+                            </button>
+                            <p>{currentProductCount}</p>
+                            <button className={styles.countButton}
+                                    onClick={() => setCurrentProductCount(currentProductCount + 1)}>+
+                            </button>
+                        </div>
+                        :
+                        <p>{`Количество: ${count}`}</p>
+                    }
                     {needButton ?
                         <button className={styles.button} onClick={onAddProductClick}>Добавить в корзину</button>
                         :

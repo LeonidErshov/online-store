@@ -33,6 +33,7 @@ export const ShoppingCart = () => {
                                                              count={JSON.parse(`${localStorage.getItem(`countProduct${value?.id}`)}`)}
                                                              onDeleteProductClick={() => handleDeleteFromShoppingCart(value)}
                                                              id={value.id}
+                                                             shoppingCart={true}
                     />)}
                 </div>
                 :

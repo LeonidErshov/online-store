@@ -67,6 +67,7 @@ export const FavouritesProducts = () => {
                                 </div>
                                 <button className={styles.addInCartButton} onClick={() => {
                                     localStorage.setItem(`product${currentCard}`, JSON.stringify(currentProduct));
+                                    localStorage.setItem(`countProduct${currentCard}`, JSON.stringify(currentProductCount));
                                     setAddToCart(false);
                                 }}>Добавить в корзину</button>
                                 <button className={styles.closeButton} onClick={() => {

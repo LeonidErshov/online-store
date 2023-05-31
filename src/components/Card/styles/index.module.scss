@@ -33,6 +33,26 @@
     flex-direction: column;
     gap: 10px;
 
+    .countBlock {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      z-index: 1;
+
+      .countButton {
+        border-radius: 20px;
+        background-color: white;
+        border: 1px solid black;
+        @include useInter(400, 20px, 25px);
+
+        &:hover {
+          background-color: blue;
+          color: white;
+          border-color: blue;
+        }
+      }
+    }
+
     .button {
       border-radius: 20px;
       height: 48px;

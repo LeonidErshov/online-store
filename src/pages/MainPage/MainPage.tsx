@@ -32,11 +32,17 @@ export const MainPage = () => {
 
     const [currentProductCount, setCurrentProductCount] = useState(1)
 
+    const [searchTerm, setSearchTerm] = useState('')
+
     return (
         <div className={styles.mainContainer} >
             <h1>Главная</h1>
+            <div className={styles.search}>
+                <p>Найти нужный товар: </p>
+                <input type="text" value={searchTerm} onChange={(event: any) => setSearchTerm(event.target.value)} />
+            </div>
             <div className={styles.cardsContainer}>
-                {products?.data.map((value) =>
+                {products?.data.filter((value) => value.title.toLowerCase().includes(searchTerm.toLowerCase())).map((value) =>
                     <Card needButton={true}
                           image={value.image}
                           title={value.title}
